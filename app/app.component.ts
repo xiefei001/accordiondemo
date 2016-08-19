@@ -6,10 +6,15 @@ import {Component} from '@angular/core';
 <div class="container">
   <h1>My First Angular 2 App</h1>
   <my-accordion>
-    <my-accordion-panel [title]="'test'" (titleClicked)="onClick()">
+    <my-accordion-panel [title]="'test'">
       test
     </my-accordion-panel>
     <my-accordion-panel [title]="'xxxxxxx'">
+      <div>dfsfsfafs</div>
+    </my-accordion-panel>
+     <my-accordion-panel [title]="'ccccccccccccccc'">
+      <div>dfsfsfafs</div>
+      <div>dfsfsfafs</div>
       <div>dfsfsfafs</div>
     </my-accordion-panel>
 </my-accordion>
@@ -17,7 +22,4 @@ import {Component} from '@angular/core';
 `
 })
 export class AppComponent {
-  onClick(){
-    console.log("---------------------clicked --------------");
-  }
 }

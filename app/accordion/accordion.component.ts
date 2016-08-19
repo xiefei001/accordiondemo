@@ -1,4 +1,4 @@
-import {Component, ContentChildren, QueryList, AfterContentInit} from "@angular/core";
+import {Component, ContentChildren, QueryList, AfterContentInit, OnInit, Input} from "@angular/core";
 import {AccordionPanelComponent} from "./accordion-panel.component";
 @Component({
   selector: 'my-accordion',
@@ -10,31 +10,36 @@ import {AccordionPanelComponent} from "./accordion-panel.component";
 `
 })
 export class AccordionComponent implements AfterContentInit {
-  @ContentChildren(AccordionPanelComponent) panelComponents:QueryList<AccordionPanelComponent>;
 
-  ngAfterContentInit():void {
+  @Input()
+  currentActivePanelId: number = 0;
+
+  @ContentChildren(AccordionPanelComponent) panelComponents: QueryList<AccordionPanelComponent>;
+
+  ngAfterContentInit(): void {
     this.panelComponents.forEach((panel, index, arrs) => {
       panel.setValue(this, index);
-      if (index == 0) {
-        panel.isIn = true;
-      } else {
-        panel.isIn = false;
+      if (index === this.currentActivePanelId) {
+        panel.isIn = "true";
       }
     });
   }
 
-  onClick(id:number) {
-    console.log(`id is clicked ${id}`);
-    this.activate(id);
+  onClick(id: number) {
+    let activePanel = this.panelComponents.filter((panel, index) => index === this.currentActivePanelId)[0];
+    if (this.currentActivePanelId === id) {
+      if (activePanel.isIn === "true") {
+        activePanel.isIn = 'false';
+      } else {
+        activePanel.isIn = 'true';
+      }
+    } else {
+      activePanel.isIn = "false";
+      this.panelComponents.filter((panel, index) => index === id)[0].isIn = 'true';
+      this.currentActivePanelId = id;
+    }
+
+
   }
 
-  activate(id:number) {
-    this.panelComponents.forEach((panel, index, arrs) => {
-      if (id === index) {
-        panel.isIn = true;
-      } else {
-        panel.isIn = false;
-      }
-    });
-  }
 }
