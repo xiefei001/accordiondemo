@@ -1,0 +1,45 @@
+<div class="container">
+  <fieldset>
+    <legend>Suche</legend>
+  </fieldset>
+  <form class="form-horizontal" #sucheForm="ngForm">
+    <div class="form-group">
+      <label for="inputAPLNummer" class="control-label col-xs-12 col-sm-3">APL-Nummer</label>
+      <div class="col-xs-12 col-sm-9">
+        <input type="text" class="form-control" id="inputAPLNummer">
+      </div>
+      <div class="col-xs-12 col-sm-12">
+        <hr size="5"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputRoehrchenNummer" class="control-label col-xs-12 col-sm-3">Röhrchen-Nummer</label>
+      <div class="col-xs-12 col-sm-9">
+        <input type="text" class="form-control" id="inputRoehrchenNummer">
+      </div>
+      <div class="col-xs-12 col-sm-12">
+        <hr size="5"/>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="inputStrasse" class="control-label col-xs-12 col-sm-3">Straße</label>
+      <div class="col-xs-12 col-sm-9">
+        <input type="text" class="form-control" id="inputStrasse">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputHausnummer" class="control-label col-xs-12 col-sm-3">Hausnummer</label>
+      <div class="col-xs-12 col-sm-9">
+        <input type="text" class="form-control" id="inputHausnummer">
+      </div>
+      <div class="col-xs-12 col-sm-12">
+        <hr size="5"/>
+      </div>
+    </div>
+    {{sucheForm | json}}
+    <button type="submit" class="btn btn-primary pull-right">Suchen</button>
+  </form>
+</div>

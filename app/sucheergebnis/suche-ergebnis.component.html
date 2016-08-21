@@ -1,0 +1,12 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th *ngFor="let column of columns" (click)="sort(column.key)">
+      {{column.viewName}} <span class="fa fa-fw fa-sort" [ngClass]="setDisplayIcon(column.key)"></span>
+    </th>
+  </tr>
+  </thead>
+  <tr *ngFor="let row of rows">
+    <td *ngFor="let column of columns">{{row[column.key]}}</td>
+  </tr>
+</table>

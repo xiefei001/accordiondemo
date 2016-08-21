@@ -10,7 +10,7 @@ import id = webdriver.By.id;
       <a (click)="onClick()">{{title}}</a>
     </h4>
   </div>
-  <div class="panel-collapse"  @active="isIn">
+  <div class="panel-collapse"  [@active]="isIn">
     <div class="panel-body">
       <ng-content></ng-content>
     </div>
