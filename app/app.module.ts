@@ -8,10 +8,12 @@ import {AccordionComponent} from "./accordion/accordion.component";
 import {SucheFormModule} from "./suche/suche-form.module";
 import {LoginComponent} from "./login/login.component";
 import {SucheErgebnisComponent} from "./sucheergebnis/suche-ergebnis.component";
+import {BegehungComponent} from "./begehung/begehung.component";
 
 @NgModule({
   imports: [BrowserModule, SucheFormModule],
-  declarations: [AppComponent, AccordionPanelComponent, AccordionComponent, LoginComponent, SucheErgebnisComponent],
+  declarations: [AppComponent, AccordionPanelComponent,
+    AccordionComponent, LoginComponent, SucheErgebnisComponent, BegehungComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

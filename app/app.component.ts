@@ -22,8 +22,9 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 </my-accordion> 
 </div>
 -->
-<my-login></my-login>
-<suche-ergebnis [columns]="columns" [rows]="rows"></suche-ergebnis>
+<!--<my-login></my-login>
+<suche-ergebnis [columns]="columns" [rows]="rows"></suche-ergebnis>-->
+<begehung></begehung>
 `
 })
 export class AppComponent {

@@ -26,13 +26,18 @@ export class Sortieren {
         return -this.direction;
       }
     });
-    return this.direction;
   }
 }
 
 
 @Component({
   selector: 'suche-ergebnis',
+  styles: [`
+th:hover {
+  cursor: pointer;
+  background-color: #c0c0c0;
+}
+`],
   templateUrl: 'app/sucheergebnis/suche-ergebnis.component.html'
 })
 export class SucheErgebnisComponent {
@@ -44,19 +49,15 @@ export class SucheErgebnisComponent {
 
   sortieren:Sortieren = new Sortieren();
 
-  direction:number;
-  sortKey:string;
-
   setDisplayIcon(key:string) {
     return {
-      "fa-sort-asc": key === this.sortKey && this.direction > 0,
-      "fa-sort-desc": key === this.sortKey && this.direction < 0
+      "fa-sort-asc": key === this.sortieren.key && this.sortieren.direction > 0,
+      "fa-sort-desc": key === this.sortieren.key && this.sortieren.direction < 0
     };
   }
 
   sort(key:string) {
-    this.sortKey = key;
-    this.direction = this.sortieren.sortieren(key, this.rows);
+    this.sortieren.sortieren(key, this.rows);
   }
 
   setClasses() {
