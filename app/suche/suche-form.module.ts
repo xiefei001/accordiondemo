@@ -3,8 +3,9 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {SucheFormComponent} from "./suche-form.component";
 @NgModule({
-  imports:[CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   declarations: [SucheFormComponent],
   exports: [SucheFormComponent]
 })
-export class SucheFormModule{}
+export class SucheFormModule {
+}

@@ -1,11 +1,11 @@
-export class SucheForm{
-  aplNummer:string;
+export class SucheForm {
+  aplNummer: string;
   reohrchenNummer: string;
-  strasse:string;
-  hausNummer:string;
+  strasse: string;
+  hausNummer: string;
 }
 
-export class SucheFormService{
+export class SucheFormService {
   sucheForm = {};
 
 }

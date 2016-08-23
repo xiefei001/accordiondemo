@@ -9,11 +9,13 @@ import {SucheFormModule} from "./suche/suche-form.module";
 import {LoginComponent} from "./login/login.component";
 import {SucheErgebnisComponent} from "./sucheergebnis/suche-ergebnis.component";
 import {BegehungComponent} from "./begehung/begehung.component";
+import {HttpModule} from "@angular/http";
+import {FileUploadComponent} from "./fileupload/file-upload.component";
 
 @NgModule({
-  imports: [BrowserModule, SucheFormModule],
+  imports: [BrowserModule, SucheFormModule, HttpModule],
   declarations: [AppComponent, AccordionPanelComponent,
-    AccordionComponent, LoginComponent, SucheErgebnisComponent, BegehungComponent],
+    AccordionComponent, LoginComponent, SucheErgebnisComponent, BegehungComponent,FileUploadComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

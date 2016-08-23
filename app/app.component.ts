@@ -23,8 +23,9 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 </div>
 -->
 <!--<my-login></my-login>
-<suche-ergebnis [columns]="columns" [rows]="rows"></suche-ergebnis>-->
-<begehung></begehung>
+<suche-ergebnis [columns]="columns" [rows]="rows"></suche-ergebnis>
+<begehung></begehung> -->
+<file-upload></file-upload>
 `
 })
 export class AppComponent {
