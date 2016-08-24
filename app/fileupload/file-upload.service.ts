@@ -2,6 +2,22 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs";
 
+export enum FileUploadZustand {
+  UPLOADED, CANCELED, UPLOADING, PREPARED
+}
+
+export class FileUploadViewModel {
+  zustand: FileUploadZustand = FileUploadZustand.PREPARED;
+  progress: number = 0.0;
+
+
+  constructor(public file: File){}
+
+  isReady(){
+    return this.zustand != FileUploadZustand.PREPARED;
+  }
+
+}
 
 @Injectable()
 export class FileUploadService {
