@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {FileUploadService, FileUploadViewModel, FileUploadZustand} from "./file-upload.service";
+import {Component, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, NgZone} from "@angular/core";
+import {FileUploadService, FileUploadViewModel} from "./file-upload.service";
 
 @Component({
   selector: 'file-upload',
@@ -8,20 +8,21 @@ import {FileUploadService, FileUploadViewModel, FileUploadZustand} from "./file-
 })
 export class FileUploadComponent {
 
-  public autoUpload: boolean = false;
-  public fileUploadViewModels: Array<FileUploadViewModel> = [];
+  public autoUpload:boolean = false;
+  public fileUploadViewModels:Array<FileUploadViewModel> = [];
 
   uploader = {
     isUploading: false,
     queue: [1, 2]
   };
 
-  constructor(private fileUploadService: FileUploadService) {
+  constructor(private fileUploadService:FileUploadService
+    , private zone:NgZone) {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   }
 
-  onFileLoaderChange(event: any) {
-    let file: File = event.target.files[0];
+  onFileLoaderChange(event:any) {
+    let file:File = event.target.files[0];
     if (file != null) {
       this.fileUploadViewModels.push(new FileUploadViewModel(file));
     }
@@ -32,14 +33,14 @@ export class FileUploadComponent {
     //this.fileUploadService.uploadFile(file)
   }
 
-  upload(i: number) {
+  upload(i:number) {
     let fileUploadViewModel:FileUploadViewModel = this.fileUploadViewModels[i];
     this.fileUploadService.uploadFile('POST', 'http://localhost:8080/upload', fileUploadViewModel.file)
-      .subscribe(n =>{
-        fileUploadViewModel.progress = n;
-        console.log("n = ", n);
-      }, err =>{}, () =>{
-        fileUploadViewModel.zustand = FileUploadZustand.UPLOADED;
+      .subscribe(n => {
+        this.zone.run(()=> {fileUploadViewModel.progress = n});
+      }, err => {
+      }, ()=> {
+        fileUploadViewModel.zustand = 'UPLOADED';
       });
   }
 

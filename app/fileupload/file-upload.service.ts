@@ -2,19 +2,18 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs";
 
-export enum FileUploadZustand {
-  UPLOADED, CANCELED, UPLOADING, PREPARED
-}
+type FileUploadZustand ='UPLOADED'|'CANCELED'|'UPLOADING'| 'PREPARED';
+
 
 export class FileUploadViewModel {
-  zustand: FileUploadZustand = FileUploadZustand.PREPARED;
-  progress: number = 0.0;
+  zustand:FileUploadZustand = 'PREPARED';
+  progress:number = 0.0;
 
 
   constructor(public file: File){}
 
-  isReady(){
-    return this.zustand != FileUploadZustand.PREPARED;
+  isReady() {
+    return this.zustand != 'PREPARED';
   }
 
 }
@@ -35,8 +34,8 @@ export class FileUploadService {
         }
       };
 
-      xhr.upload.onprogress = (event: ProgressEvent) => {
-        observer.next(event.loaded/event.total);
+      xhr.upload.onprogress = (event:ProgressEvent) => {
+        observer.next(event.loaded / event.total);
       };
 
       let formData = new FormData();

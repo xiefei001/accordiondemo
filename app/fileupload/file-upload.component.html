@@ -7,6 +7,7 @@
     <th class="col-sm-1">Zustand</th>
     <th class="col-sm-3">Aktionen</th>
   </tr>
+  </thead>
   <tr class="row" *ngFor="let fileUploadViewModel of fileUploadViewModels; let i=index">
     <td><strong>{{fileUploadViewModel.file.name}}</strong></td>
     <td>
@@ -18,7 +19,7 @@
         </div>
       </div>
     </td>
-    <td>test</td>
+    <td>{{fileUploadViewModel.zustand}}</td>
     <td>
       <button class="btn btn-success" type="button" (click)="upload(i)"
               [disabled]="fileUploadViewModel.isReady()">
@@ -28,29 +29,26 @@
         <span class="glyphicon glyphicon-ban-circle"></span> Abbrechen
       </button>
     </td>
-
   </tr>
-  </thead>
 </table>
 <div class="row">
-  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-    <input type="file" id="uploadfile" style="display: none;" (change)="onFileLoaderChange($event)">
-    <div class="btn-toolbar">
-      <label for="uploadfile" class="btn btn-info">
-        <span class="glyphicon glyphicon-folder-open"></span>&nbsp; Datei Auswählen
-      </label>
-      <button type="button" class="btn btn-success btn-s"
-              (click)="uploader.uploadAll()" [disabled]="!uploader.queue.length">
-        <span class="glyphicon glyphicon-upload"></span> Alle Dateien Hochladen
-      </button>
-      <button type="button" class="btn btn-warning btn-s"
-              (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-        <span class="glyphicon glyphicon-ban-circle"></span> Hochladene Dateien Abbrechen
-      </button>
-      <button type="button" class="btn btn-danger btn-s"
-              (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-        <span class="glyphicon glyphicon-trash"></span> Alle Dateien Entfernen
-      </button>
-    </div>
+  <input type="file" id="uploadfile" style="display: none;" (change)="onFileLoaderChange($event)">
+  <div class="btn-toolbar">
+    <label for="uploadfile" class="btn btn-info">
+      <span class="glyphicon glyphicon-folder-open"></span>&nbsp; Datei Auswählen
+    </label>
+    <button type="button" class="btn btn-success btn-s"
+            (click)="uploader.uploadAll()" [disabled]="!uploader.queue.length">
+      <span class="glyphicon glyphicon-upload"></span> Alle Dateien Hochladen
+    </button>
+    <button type="button" class="btn btn-warning btn-s"
+            (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+      <span class="glyphicon glyphicon-ban-circle"></span> Hochladene Dateien Abbrechen
+    </button>
+    <button type="button" class="btn btn-danger btn-s"
+            (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+      <span class="glyphicon glyphicon-trash"></span> Alle Dateien Entfernen
+    </button>
   </div>
 </div>
+
