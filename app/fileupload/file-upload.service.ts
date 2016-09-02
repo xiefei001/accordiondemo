@@ -28,10 +28,13 @@ export class FileUploadService {
         if(xhr.readyState == 4) {
           if(xhr.status == 200) {
             observer.complete();
+            console.log(xhr);
           } else {
+            console.log(xhr);
             observer.error(xhr.response);
           }
         }
+        console.log(xhr);
       };
 
       xhr.upload.onprogress = (event:ProgressEvent) => {

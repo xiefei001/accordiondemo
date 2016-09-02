@@ -8,21 +8,21 @@ import {FileUploadService, FileUploadViewModel} from "./file-upload.service";
 })
 export class FileUploadComponent {
 
-  public autoUpload:boolean = false;
-  public fileUploadViewModels:Array<FileUploadViewModel> = [];
+  public autoUpload: boolean = false;
+  public fileUploadViewModels: Array<FileUploadViewModel> = [];
 
   uploader = {
     isUploading: false,
     queue: [1, 2]
   };
 
-  constructor(private fileUploadService:FileUploadService
-    , private zone:NgZone) {
+  constructor(private fileUploadService: FileUploadService
+    , private zone: NgZone) {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   }
 
-  onFileLoaderChange(event:any) {
-    let file:File = event.target.files[0];
+  onFileLoaderChange(event: any) {
+    let file: File = event.target.files[0];
     if (file != null) {
       this.fileUploadViewModels.push(new FileUploadViewModel(file));
     }
@@ -33,12 +33,16 @@ export class FileUploadComponent {
     //this.fileUploadService.uploadFile(file)
   }
 
-  upload(i:number) {
-    let fileUploadViewModel:FileUploadViewModel = this.fileUploadViewModels[i];
+  upload(i: number) {
+    let fileUploadViewModel: FileUploadViewModel = this.fileUploadViewModels[i];
     this.fileUploadService.uploadFile('POST', 'http://localhost:8080/upload', fileUploadViewModel.file)
       .subscribe(n => {
-        this.zone.run(()=> {fileUploadViewModel.progress = n});
+        console.log("progress: " + fileUploadViewModel.progress);
+        this.zone.run(()=> {
+          fileUploadViewModel.progress = n
+        });
       }, err => {
+        console.log("error: " + err);
       }, ()=> {
         fileUploadViewModel.zustand = 'UPLOADED';
       });
@@ -56,3 +60,4 @@ export class FileUploadComponent {
 
 
 }
+
