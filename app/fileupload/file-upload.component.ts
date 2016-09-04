@@ -1,10 +1,11 @@
 import {Component, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, NgZone} from "@angular/core";
 import {FileUploadService, FileUploadViewModel} from "./file-upload.service";
+import {DBService} from "../indexddb/DB.service";
 
 @Component({
   selector: 'file-upload',
   templateUrl: 'app/fileupload/file-upload.component.html',
-  providers: [FileUploadService]
+  providers: [FileUploadService, DBService]
 })
 export class FileUploadComponent {
 
@@ -16,9 +17,11 @@ export class FileUploadComponent {
     queue: [1, 2]
   };
 
-  constructor(private fileUploadService: FileUploadService
-    , private zone: NgZone) {
+  constructor(private fileUploadService: FileUploadService,
+              private dbService: DBService,
+              private zone: NgZone) {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    dbService.initData();
   }
 
   onFileLoaderChange(event: any) {
