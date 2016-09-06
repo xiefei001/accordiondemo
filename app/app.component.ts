@@ -23,10 +23,10 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 </div>
 --> 
 <carousel>
-  <slide>
-    <div style="width: 100%; height: 100%;background: green">AAAAAAAAAAAAAA</div>
+  <slide style="width: 100%; height: 100%;background: green">
+    <div >AAAAAAAAAAAAAA</div>
   </slide>
-  <slide>
+  <slide style="width: 100%; height: 100%;background: green">
     <div style="width: 100%; height: 100%;background: green">BBBBBBBBBBB</div>
   </slide>
 </carousel>
