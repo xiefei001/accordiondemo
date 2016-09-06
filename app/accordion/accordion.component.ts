@@ -16,6 +16,7 @@ export class AccordionComponent implements AfterContentInit {
 
   @ContentChildren(AccordionPanelComponent) panelComponents: QueryList<AccordionPanelComponent>;
 
+
   ngAfterContentInit(): void {
     this.panelComponents.forEach((panel, index, arrs) => {
       panel.setValue(this, index);

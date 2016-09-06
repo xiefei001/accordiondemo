@@ -1,0 +1,53 @@
+<div class="carousel">
+  <ol class="carousel-indicators" *ngIf="slides.length>1">
+    <li *ngFor="let slide of slides; let index=index" [class.active]="slide.active===true" (click)="select(slide)"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+<!--
+<div class="carousel">
+  <ol class="carousel-indicators">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="item carousel-item active">
+      <div class="item text-center">
+        <img style="margin:auto;" src="//placekitten.com/602/300">
+        <div style="width: 100%;height: 100%;">
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        </div>
+        <div class="carousel-caption">
+          <h4>Slide 1</h4>
+          <p>Extra Kittys</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item text-center">
+        <img style="margin:auto;" src="//placekitten.com/603/300">
+
+        <div class="carousel-caption">
+          <h4>Slide 2</h4>
+          <p>Lots of
+            Felines</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item text-center">
+        <img style="margin:auto;" src="//placekitten.com/604/300">
+        <div class="carousel-caption">
+          <h4>Slide 3</h4>
+          <p>Surplus Cutes</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+-->

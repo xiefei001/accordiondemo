@@ -11,11 +11,14 @@ import {SucheErgebnisComponent} from "./sucheergebnis/suche-ergebnis.component";
 import {BegehungComponent} from "./begehung/begehung.component";
 import {HttpModule} from "@angular/http";
 import {FileUploadComponent} from "./fileupload/file-upload.component";
+import {CarouselComponent} from "./carousel/carousel.component";
+import {SlideComponent} from "./carousel/slide.component";
 
 @NgModule({
   imports: [BrowserModule, SucheFormModule, HttpModule],
   declarations: [AppComponent, AccordionPanelComponent,
-    AccordionComponent, LoginComponent, SucheErgebnisComponent, BegehungComponent,FileUploadComponent],
+    AccordionComponent, LoginComponent, SucheErgebnisComponent,
+    BegehungComponent, FileUploadComponent, CarouselComponent, SlideComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
