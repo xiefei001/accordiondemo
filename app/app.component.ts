@@ -4,6 +4,7 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 @Component({
   selector: 'my-app',
   template: `
+<!--
 <div class="container">
   <h1>My First Angular 2 App</h1>
   <my-accordion>
@@ -34,7 +35,7 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 <!--<my-login></my-login>
 <suche-ergebnis [columns]="columns" [rows]="rows"></suche-ergebnis>
 <begehung></begehung> -->
-<file-upload></file-upload>
+<!--<file-upload></file-upload>-->
 `
 })
 export class AppComponent {
