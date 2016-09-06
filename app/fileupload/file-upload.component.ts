@@ -1,6 +1,6 @@
 import {Component, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, NgZone} from "@angular/core";
 import {FileUploadService, FileUploadViewModel} from "./file-upload.service";
-import {DBService} from "../indexddb/DB.service";
+import {DBService} from "../indexeddb/DB.service";
 
 @Component({
   selector: 'file-upload',

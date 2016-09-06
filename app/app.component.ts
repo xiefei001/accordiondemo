@@ -4,7 +4,6 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 @Component({
   selector: 'my-app',
   template: `
-<!--
 <div class="container">
   <h1>My First Angular 2 App</h1>
   <my-accordion>
@@ -35,16 +34,16 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 <!--<my-login></my-login>
 <suche-ergebnis [columns]="columns" [rows]="rows"></suche-ergebnis>
 <begehung></begehung> -->
-<!--<file-upload></file-upload>-->
+<file-upload></file-upload>
 `
 })
 export class AppComponent {
-  columns: Column[] = [
+  columns:Column[] = [
     new Column("apl", "APL-Nr"),
     new Column("strasse", "Straße"),
     new Column("roehrchen", "Röhrchen-Nr")
   ];
-  rows: any[] = [
+  rows:any[] = [
     {apl: 'F_160_01_APL_0001', strasse: 'Clemsstraße 86', roehrchen: 'F_160_01_24_0001'},
     {apl: 'F_160_01_APL_0002', strasse: 'Clemsstraße 86 RGB', roehrchen: 'F_160_01_24_0002'},
     {apl: 'F_160_01_APL_0003', strasse: 'Clemsstraße 88', roehrchen: 'F_160_01_24_0003'},
