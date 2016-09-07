@@ -54,8 +54,11 @@ export class CarouselComponent implements AfterContentInit {
         slide.hasNext = false;
         slide.active = true;
       }, 600);
-      slide.hasLeft = true;
       slide.hasNext = true;
+
+      setTimeout(()=> {
+        slide.hasLeft = true;
+      }, 0);
     } else if (direction == Direction.Right) {
       setTimeout(()=> {
         slide.hasPrev = false;
@@ -66,7 +69,7 @@ export class CarouselComponent implements AfterContentInit {
 
       setTimeout(()=> {
         slide.hasRight = true;
-      });
+      }, 0);
     }
   }
 
@@ -82,11 +85,13 @@ export class CarouselComponent implements AfterContentInit {
         slide.hasRight = false;
         slide.active = false;
       }, 600);
-      slide.hasRight = true;
+      setTimeout(()=> {
+        slide.hasRight = true;
+      });
     }
   }
 
-  previous(){
+  previous() {
     console.log("currentIndex : " + this.currentIndex);
     if (this.currentIndex == 1) {
       this.select(0);

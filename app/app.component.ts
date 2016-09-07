@@ -24,10 +24,25 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 --> 
 <carousel>
   <slide>
-    <h1 style="background-color: grey">AAAAAAAAAAAAAA</h1>
+    <my-login></my-login>
   </slide>
   <slide>
-    <h1 style="background-color: blue">BBBBBBBBBBB</h1>
+  <search-form></search-form>
+</slide>
+  <slide>
+     <my-accordion>
+    <my-accordion-panel [title]="'test'">
+      test
+    </my-accordion-panel>
+    <my-accordion-panel [title]="'xxxxxxx'">
+      <div>dfsfsfafs</div>
+    </my-accordion-panel>
+     <my-accordion-panel [title]="'ccccccccccccccc'">
+      <div>dfsfsfafs</div>
+      <div>dfsfsfafs</div>
+      <div>dfsfsfafs</div>
+    </my-accordion-panel>
+</my-accordion> 
   </slide>
 </carousel>
 <!--
