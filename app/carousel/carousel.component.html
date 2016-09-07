@@ -5,6 +5,11 @@
   <div class="carousel-inner" role="listbox">
     <ng-content></ng-content>
   </div>
+
+  <a class="left carousel-control" role="button" data-slide="prev" (click)="previous()">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
 </div>
 
 <!--

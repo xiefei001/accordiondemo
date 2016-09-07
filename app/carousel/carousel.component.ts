@@ -86,4 +86,12 @@ export class CarouselComponent implements AfterContentInit {
     }
   }
 
+  previous(){
+    console.log("currentIndex : " + this.currentIndex);
+    if (this.currentIndex == 1) {
+      this.select(0);
+    } else {
+      this.select(1);
+    }
+  }
 }

@@ -44,5 +44,4 @@ export class SlideComponent {
 
   @HostBinding('class.item')
   public addClass: boolean = true;
-
 }
