@@ -23,11 +23,11 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 </div>
 --> 
 <carousel>
-  <slide style="width: 100%; height: 100%;background: green">
-    <div >AAAAAAAAAAAAAA</div>
+  <slide>
+    <h1 style="background-color: grey">AAAAAAAAAAAAAA</h1>
   </slide>
-  <slide style="width: 100%; height: 100%;background: green">
-    <div style="width: 100%; height: 100%;background: green">BBBBBBBBBBB</div>
+  <slide>
+    <h1 style="background-color: blue">BBBBBBBBBBB</h1>
   </slide>
 </carousel>
 <!--
@@ -39,12 +39,12 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 `
 })
 export class AppComponent {
-  columns:Column[] = [
+  columns: Column[] = [
     new Column("apl", "APL-Nr"),
     new Column("strasse", "Straße"),
     new Column("roehrchen", "Röhrchen-Nr")
   ];
-  rows:any[] = [
+  rows: any[] = [
     {apl: 'F_160_01_APL_0001', strasse: 'Clemsstraße 86', roehrchen: 'F_160_01_24_0001'},
     {apl: 'F_160_01_APL_0002', strasse: 'Clemsstraße 86 RGB', roehrchen: 'F_160_01_24_0002'},
     {apl: 'F_160_01_APL_0003', strasse: 'Clemsstraße 88', roehrchen: 'F_160_01_24_0003'},
