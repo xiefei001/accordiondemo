@@ -1,6 +1,9 @@
 <div class="container">
+  <div class="row">
+    <img src="images/SWM.svg.png" class="img-responsive center-block" alt="Stardtwerk München" width="304" height="236">
+  </div>
   <div class="row text-center">
-    <div class="btn btn-info btn-circle"><i class="fa fa-user fa-6" aria-hidden="true"></i></div>
+    <a href="#" class="btn btn-info btn-circle disabled"><i class="fa fa-user fa-6" aria-hidden="true"></i></a>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
@@ -19,7 +22,7 @@
           </label>
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-block btn-info">Login</button>
+          <button type="button" (click)="login()"  class="btn btn-block btn-info">Login</button>
         </div>
         <div class="form-group text-center">
           <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a>

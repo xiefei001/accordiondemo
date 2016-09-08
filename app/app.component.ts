@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Column} from "./sucheergebnis/suche-ergebnis.component";
+import {LoginComponent} from "./login/login.component";
+import {CarouselComponent} from "./carousel/carousel.component";
 
 @Component({
   selector: 'my-app',
@@ -24,11 +26,11 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 --> 
 <carousel>
   <slide>
-    <my-login></my-login>
+    <my-login (nextStepRequest)="nextStep()"></my-login>
   </slide>
   <slide>
   <search-form></search-form>
-</slide>
+  </slide>
   <slide>
      <my-accordion>
     <my-accordion-panel [title]="'test'">
@@ -42,7 +44,7 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
       <div>dfsfsfafs</div>
       <div>dfsfsfafs</div>
     </my-accordion-panel>
-</my-accordion> 
+   </my-accordion> 
   </slide>
 </carousel>
 <!--
@@ -54,6 +56,15 @@ import {Column} from "./sucheergebnis/suche-ergebnis.component";
 `
 })
 export class AppComponent {
+
+  @ViewChild(CarouselComponent)
+  private carousel: CarouselComponent;
+
+
+  nextStep(){
+    this.carousel.next();
+  }
+
   columns: Column[] = [
     new Column("apl", "APL-Nr"),
     new Column("strasse", "Straße"),
@@ -66,5 +77,5 @@ export class AppComponent {
     {apl: 'F_160_01_APL_0004', strasse: 'Clemsstraße 90', roehrchen: 'F_160_01_24_0004'},
     {apl: 'F_160_01_APL_0005', strasse: 'Clemsstraße 92', roehrchen: 'F_160_01_24_0005'},
     {apl: 'F_160_01_APL_0006', strasse: 'Clemsstraße 94', roehrchen: 'F_160_01_24_0006'}
-  ]
+  ];
 }

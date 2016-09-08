@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
+import {CarouselComponent} from "../carousel/carousel.component";
 @Component({
   selector: 'my-login',
   templateUrl: 'app/login/login.html',
@@ -17,4 +18,10 @@ import {Component} from "@angular/core";
 })
 export class LoginComponent {
 
+  @Output()
+  nextStepRequest = new EventEmitter();
+
+  login() {
+    this.nextStepRequest.emit(0);
+  }
 }

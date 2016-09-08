@@ -5,9 +5,9 @@ import id = webdriver.By.id;
   selector: 'my-accordion-panel',
   template: `
 <div class="panel panel-default">
-  <div class="panel-heading">
+  <div  (click)="onClick()" class="panel-heading" style="cursor: pointer">
     <h4 class="panel-title">
-      <a (click)="onClick()">{{title}}</a>
+      <a>{{title}}</a>
     </h4>
   </div>
   <div class="panel-collapse"  [@active]="isIn">

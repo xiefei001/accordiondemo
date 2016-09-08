@@ -1,5 +1,6 @@
-import {Component, ContentChildren, QueryList, AfterContentInit} from "@angular/core";
+import {Component, ContentChildren, QueryList, AfterContentInit, ViewChild} from "@angular/core";
 import {SlideComponent} from "./slide.component";
+import {LoginComponent} from "../login/login.component";
 
 
 enum Direction {
@@ -15,7 +16,7 @@ export class CarouselComponent implements AfterContentInit {
 
   @ContentChildren(SlideComponent)
   public slides: QueryList<SlideComponent>;
-  //private slides: Array<SlideComponent>;
+
 
   private currentIndex: number = 0;
 
@@ -98,5 +99,9 @@ export class CarouselComponent implements AfterContentInit {
     } else {
       this.select(1);
     }
+  }
+
+  next() {
+    this.select(this.currentIndex + 1);
   }
 }
