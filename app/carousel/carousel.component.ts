@@ -14,11 +14,14 @@ enum Direction {
 })
 export class CarouselComponent implements AfterContentInit {
 
+  SWIPE_ACTION = {LEFT: 'swipeleft', RIGHT: 'swiperight'};
+
   @ContentChildren(SlideComponent)
   public slides: QueryList<SlideComponent>;
 
 
   private currentIndex: number = 0;
+  private handledIndex: number = 0;
 
   ngAfterContentInit(): void {
     this.slides.forEach((slide, index, arr)=> {
@@ -28,10 +31,24 @@ export class CarouselComponent implements AfterContentInit {
     });
   }
 
+
+  swipe(action: string = this.SWIPE_ACTION.RIGHT) {
+    console.log("action: " +action);
+    //prev
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      this.select(this.currentIndex - 1);
+    }
+    //next
+    if (action === this.SWIPE_ACTION.LEFT) {
+      this.select(this.currentIndex + 1);
+    }
+  }
+
+
   public select(ind: number): void {
-    let direction: Direction = Direction.Left;
+    let direction: Direction = Direction.Right;
     if (this.currentIndex < ind) {
-      direction = Direction.Right;
+      direction = Direction.Left;
     }
 
 

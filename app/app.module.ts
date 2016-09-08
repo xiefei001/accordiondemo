@@ -13,9 +13,10 @@ import {HttpModule} from "@angular/http";
 import {FileUploadComponent} from "./fileupload/file-upload.component";
 import {CarouselComponent} from "./carousel/carousel.component";
 import {SlideComponent} from "./carousel/slide.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  imports: [BrowserModule, SucheFormModule, HttpModule],
+  imports: [BrowserModule, SucheFormModule, HttpModule, FormsModule],
   declarations: [AppComponent, AccordionPanelComponent,
     AccordionComponent, LoginComponent, SucheErgebnisComponent,
     BegehungComponent, FileUploadComponent, CarouselComponent, SlideComponent],

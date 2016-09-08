@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <form action="" id="loginForm">
+      <form (ngSubmit)="login()" #loginForm="ngForm">
         <div class="form-group input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
           <input class="form-control has-warning" type="text" name='username' placeholder="Benutzername"/>
@@ -22,7 +22,7 @@
           </label>
         </div>
         <div class="form-group">
-          <button type="button" (click)="login()"  class="btn btn-block btn-info">Login</button>
+          <button type="submit" class="btn btn-block btn-info">Login</button>
         </div>
         <div class="form-group text-center">
           <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a>
