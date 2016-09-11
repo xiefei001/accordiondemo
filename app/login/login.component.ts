@@ -1,5 +1,11 @@
 import {Component, EventEmitter, Output} from "@angular/core";
-import {CarouselComponent} from "../carousel/carousel.component";
+
+// Add the RxJS Observable operators.
+import './rxjs-operators';
+import {LoginService, User} from "./login.service";
+import {CookieService} from "./cookie.service";
+
+
 @Component({
   selector: 'my-login',
   templateUrl: 'app/login/login.html',
@@ -14,14 +20,29 @@ import {CarouselComponent} from "../carousel/carousel.component";
   margin-top: 40px;
   margin-bottom: 40px;
 }
-`]
+`],
+  providers: [LoginService, CookieService]
 })
 export class LoginComponent {
 
-  @Output()
-  nextStepRequest = new EventEmitter();
+  constructor(private loginService: LoginService, private cookieService: CookieService) {
+  }
 
-  login() {
-    this.nextStepRequest.emit(0);
+  @Output()
+  nextStepRequest = new EventEmitter<User>();
+
+  login(username: string, password: string) {
+    this.loginService.submitlogin(username, password)
+      .subscribe(
+        user => this.nextStepRequest.emit(user),
+        error => console.log(error),
+        () => console.log("authentication complete")
+      );
+  }
+  afterSuccessLogin(user: User) {
+    this.nextStepRequest.emit(user);
+    let sid:string = user.sid;
+    let ssid:string = user.ssid;
+    this.cookieService.setCookies(sid, ssid);
   }
 }

@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Column} from "./sucheergebnis/suche-ergebnis.component";
 import {LoginComponent} from "./login/login.component";
 import {CarouselComponent} from "./carousel/carousel.component";
+import {User} from "./login/login.service";
 
 @Component({
   selector: 'my-app',
@@ -26,7 +27,7 @@ import {CarouselComponent} from "./carousel/carousel.component";
 --> 
 <carousel>
   <slide>
-    <my-login (nextStepRequest)="nextStep()"></my-login>
+    <my-login (nextStepRequest)="nextStep(user)"></my-login>
   </slide>
   <slide>
   <search-form></search-form>
@@ -61,7 +62,7 @@ export class AppComponent {
   private carousel: CarouselComponent;
 
 
-  nextStep(){
+  nextStep(user:User){
     this.carousel.next();
   }
 
