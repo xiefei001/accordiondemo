@@ -1,7 +1,11 @@
-import {Component, HostBinding, Input, trigger, state, style, transition, animate, group, OnInit} from "@angular/core";
+import {
+  Component, HostBinding, Input, trigger, state, style, transition, animate, group, OnInit,
+  ElementRef, ChangeDetectionStrategy, Renderer
+} from "@angular/core";
 import {CarouselComponent} from "./carousel.component";
 @Component({
   selector: 'slide',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content></ng-content>
 `,
@@ -27,6 +31,13 @@ import {CarouselComponent} from "./carousel.component";
 })
 export class SlideComponent {
 
+  nativeElement: any;
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer){
+    this.nativeElement = elementRef.nativeElement;
+  }
+
+
   @HostBinding('class.active')
   public active: boolean;
 
@@ -44,4 +55,9 @@ export class SlideComponent {
 
   @HostBinding('class.item')
   public addClass: boolean = true;
+
+  setClass(name:string, isAdd:boolean){
+    this.renderer.setElementClass(this.nativeElement, name, isAdd);
+ }
+
 }

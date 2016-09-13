@@ -1,11 +1,16 @@
-import {Component, ContentChildren, QueryList, AfterContentInit, ViewChild} from "@angular/core";
+import {Component, ContentChildren, QueryList, AfterContentInit, ViewChild, ElementRef, NgZone} from "@angular/core";
 import {SlideComponent} from "./slide.component";
 import {LoginComponent} from "../login/login.component";
 
 
 enum Direction {
-  Left,
-  Right
+  left,
+  right
+}
+
+enum Type {
+  next,
+  prev
 }
 
 @Component({
@@ -18,7 +23,11 @@ export class CarouselComponent implements AfterContentInit {
 
   @ContentChildren(SlideComponent)
   public slides: QueryList<SlideComponent>;
+  private nativeElement: any;
 
+  constructor(private elementRef: ElementRef, private zone: NgZone) {
+    this.nativeElement = elementRef.nativeElement;
+  }
 
   private currentIndex: number = 0;
   private handledIndex: number = 0;
@@ -26,29 +35,90 @@ export class CarouselComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     this.slides.forEach((slide, index, arr)=> {
       if (index == this.currentIndex) {
-        this.slideActive(slide, Direction.Left);
+        this.slideActive(slide, Direction.left);
       }
     });
   }
 
 
   swipe(action: string = this.SWIPE_ACTION.RIGHT) {
-    console.log("action: " +action);
+    console.log("action: " + action);
     //prev
     if (action === this.SWIPE_ACTION.RIGHT) {
-      this.select(this.currentIndex - 1);
+      this.slide(Type.prev);
     }
     //next
     if (action === this.SWIPE_ACTION.LEFT) {
-      this.select(this.currentIndex + 1);
+      //this.select(this.currentIndex + 1);
+      this.slide(Type.next);
+    }
+  }
+
+  public slide(type: Type): void {
+    var slidesArr: SlideComponent[] = this.slides.toArray();
+    let active = slidesArr[this.currentIndex];
+    let nextIdx: number;
+    let direction: Direction;
+    if (type == Type.next) {
+      nextIdx = this.currentIndex + 1;
+      if (nextIdx == slidesArr.length) {
+        nextIdx = 0;
+      }
+      direction = Direction.left;
+    } else {
+      nextIdx = this.currentIndex - 1;
+      if (nextIdx < 0) {
+        nextIdx = slidesArr.length - 1;
+      }
+      direction = Direction.right;
+    }
+
+    let next = slidesArr[nextIdx];
+
+    this.slideTransition(type, direction, active, next);
+    this.currentIndex = nextIdx;
+  }
+
+  private slideTransition(type: Type, direction: Direction, active: SlideComponent, next: SlideComponent) {
+    if (type == Type.next) {
+
+      next.setClass("next", true);
+      next.nativeElement.offsetWidth; // force reflow;
+
+      active.setClass("left", true);
+      next.setClass("left", true);
+
+      setTimeout(()=> {
+        next.setClass("left", false);
+        next.setClass("next", false);
+        next.setClass("active", true);
+
+        active.setClass("active", false);
+        active.setClass("left", false);
+      }, 600);
+    } else {
+        next.setClass("prev", true);
+        next.nativeElement.offsetWidth; // force reflow;
+
+        active.setClass("right", true);
+        next.setClass("right", true);
+
+      setTimeout(()=> {
+        next.setClass("right", false);
+        next.setClass("prev", false);
+        next.setClass("active", true);
+
+        active.setClass("active", false);
+        active.setClass("right", false);
+      }, 600);
     }
   }
 
 
   public select(ind: number): void {
-    let direction: Direction = Direction.Right;
+    let direction: Direction = Direction.right;
     if (this.currentIndex < ind) {
-      direction = Direction.Left;
+      direction = Direction.left;
     }
 
 
@@ -66,7 +136,7 @@ export class CarouselComponent implements AfterContentInit {
   }
 
   slideActive(slide: SlideComponent, direction: Direction): void {
-    if (direction == Direction.Left) {
+    if (direction == Direction.left) {
       setTimeout(()=> {
         slide.hasLeft = false;
         slide.hasNext = false;
@@ -77,7 +147,7 @@ export class CarouselComponent implements AfterContentInit {
       setTimeout(()=> {
         slide.hasLeft = true;
       }, 0);
-    } else if (direction == Direction.Right) {
+    } else if (direction == Direction.right) {
       setTimeout(()=> {
         slide.hasPrev = false;
         slide.hasRight = false;
@@ -92,13 +162,13 @@ export class CarouselComponent implements AfterContentInit {
   }
 
   slideInactive(slide: SlideComponent, direction: Direction) {
-    if (direction == Direction.Left) {
+    if (direction == Direction.left) {
       setTimeout(()=> {
         slide.hasLeft = false;
         slide.active = false;
       }, 600);
       slide.hasLeft = true;
-    } else if (direction == Direction.Right) {
+    } else if (direction == Direction.right) {
       setTimeout(()=> {
         slide.hasRight = false;
         slide.active = false;
