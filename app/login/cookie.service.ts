@@ -12,7 +12,7 @@ export class CookieService {
 
   }
 
-  setCookie(name: string, value: string, expires?: string, path?: string, domain?: string, secure?: boolean) {
+  setCookie(name: string, value: string, expires?: number, path?: string, domain?: string, secure?: boolean) {
     let cookieStr = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
     if (expires) {
       let dtExpires = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);

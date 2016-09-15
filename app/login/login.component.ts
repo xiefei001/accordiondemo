@@ -25,6 +25,11 @@ import {CookieService} from "./cookie.service";
 })
 export class LoginComponent {
 
+
+  myusername:string;
+  mypassword:string;
+
+
   constructor(private loginService: LoginService, private cookieService: CookieService) {
   }
 
